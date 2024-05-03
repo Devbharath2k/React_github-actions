@@ -10,6 +10,7 @@ function Home() {
         email: '',
         passwd: '',
     });
+    
 const [value, setValue] = useState([]);
 
     useEffect(() => {
@@ -31,7 +32,6 @@ const [value, setValue] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post('http://localhost:4000/api/post', data);
             console.log(response.data.data);
