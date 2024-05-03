@@ -16,7 +16,6 @@ function About() {
         };
         fetchData()
     }, []);
-
     
     return (
         <div>
