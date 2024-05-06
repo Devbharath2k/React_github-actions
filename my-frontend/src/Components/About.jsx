@@ -7,7 +7,7 @@ function About() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userdata = await axios.get('http://localhost:4000/api/get');
+                const userdata = await axios.get('http://13.51.165.198:4000/api/get');
                 console.log(userdata.data.data);
                 setValue(userdata.data.data);
             } catch (error) {

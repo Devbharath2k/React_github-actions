@@ -16,7 +16,7 @@ const [value, setValue] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/get');
+                const response = await axios.get('13.51.165.198:4000/api/get');
                 setValue(response.data.data);
             } catch (error) {
                 console.log(error);

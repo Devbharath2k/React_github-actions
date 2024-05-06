@@ -1,0 +1,30 @@
+name: Deploy node application
+
+on:
+  push:
+    branches:
+      - raji
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      - name: Build Docker image
+        run: docker build -t rajeswaripoongodi/react-app .
+      - name: Push Docker image to Docker Hub
+        run: docker push rajeswaripoongodi/react-app:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from Docker Hub
+        run: docker pull rajeswaripoongodi/react-app:latest
+      - name: remove running container
+        run: docker stop react-app-container || true && docker rm react-app-container || true 
+      - name: Run Docker container
+        run: docker run --name react-app-container -p 3000:80 -d rajeswaripoongodi/react-app:latest
