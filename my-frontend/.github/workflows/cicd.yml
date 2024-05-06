@@ -1,9 +1,9 @@
-name: Deploy node application
+name: cicd
 
 on:
   push:
     branches:
-      - main
+      - raji
 
 jobs:
   build:
