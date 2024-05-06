@@ -1,4 +1,4 @@
-FROM node
+FROM node as build
 WORKDIR /app
 COPY . .
 RUN npm install
@@ -11,4 +11,5 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf *
 COPY --from=build /app/build .
 EXPOSE 80
-ENTRYPOINT ["nginx","-g","daemon off;"]
+# we need to run this as a single application o we are doing daemon off
+ENTRYPOINT ["nginx","-g","daemon off;"] 
